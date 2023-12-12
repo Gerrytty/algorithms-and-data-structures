@@ -1,25 +1,15 @@
 n = int(input())
 arr = list(map(int, input().split()))
 
-prefix_sum = [0]
-prefix_sum2 = [0]
+max_sum = float("-inf")
+curr_sum = 0
 
-s = 0
-s2 = 0
-max_min = float("-inf")
+for a in arr:
+	if curr_sum < 0:
+		curr_sum = a
+	else:
+		curr_sum += a
 
-for i in range(len(arr)):
-	if arr[i] <= 0:
-		s = 0
-		max_min = max(max_min, arr[i])
-		arr[i] = 0
-	s += arr[i]
-	prefix_sum.append(s)
-	prefix_sum2.append(s2)
+	max_sum = max(max_sum, curr_sum)
 
-print(prefix_sum)
-
-if max(prefix_sum) == 0:
-	print(max_min)
-else:
-	print(max(prefix_sum))
+print(max_sum)
